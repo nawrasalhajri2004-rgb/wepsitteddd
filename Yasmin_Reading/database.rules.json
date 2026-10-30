@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "students": {
+      ".read": "auth != null && auth.uid === 'PASTE_TEACHER_UID_HERE'",
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || auth.uid === 'PASTE_TEACHER_UID_HERE')",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    }
+  }
+}

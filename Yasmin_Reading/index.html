@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yasmin Reading | عالم القراءة</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-icon">📚</span><div><strong>Yasmin Reading</strong><small>عالم القراءة الممتع</small></div></div><span class="top-note">نتعلم ونقرأ ونبدع ✨</span></header>
+<main class="container">
+  <section id="home" class="hero">
+    <div class="hero-copy"><span class="eyebrow">مرحبًا بك يا بطل القراءة!</span><h1>كل قصة مغامرة جديدة</h1><p>اقرأ، اكتشف، وأجب عن الأسئلة. هيا نبدأ رحلة ممتعة مع الكلمات!</p></div>
+    <div class="hero-art">📖<span>⭐</span><span>🦋</span><span>🌈</span></div>
+  </section>
+  <section class="role-grid">
+    <button class="role-card student-role" onclick="showStudentLogin()"><span class="role-emoji">🧒🏻</span><h2>أنا طالب</h2><p>أريد قراءة القصص والإجابة عن الأسئلة</p><span class="role-link">ابدأ القراءة ←</span></button>
+    <button class="role-card teacher-role" onclick="showTeacherLogin()"><span class="role-emoji">👩🏻‍🏫</span><h2>أنا معلم</h2><p>الدخول إلى لوحة متابعة الطلاب</p><span class="role-link">دخول المعلم ←</span></button>
+  </section>
+  <section id="student-login" class="panel hidden"><button class="back" onclick="goHome()">← رجوع</button><h2>أهلًا يا قارئنا الصغير 🌟</h2><p>اكتب اسمك وصفك لنبدأ.</p><label>اسم الطالب</label><input id="studentName" maxlength="50" placeholder="مثال: أحمد سالم"><label>الصف / الشعبة</label><input id="studentClass" maxlength="30" placeholder="مثال: الأول أ"><button class="primary" onclick="enterStudent()">دخول إلى القصص</button><p id="studentError" class="error"></p></section>
+  <section id="teacher-login" class="panel hidden"><button class="back" onclick="goHome()">← رجوع</button><h2>دخول المعلم 🔐</h2><p>هذه المنطقة مخصصة للمعلم فقط.</p><label>البريد الإلكتروني</label><input id="teacherEmail" type="email" placeholder="teacher@example.com"><label>كلمة المرور</label><input id="teacherPassword" type="password" placeholder="كلمة المرور"><button class="primary" onclick="teacherLogin()">فتح لوحة المعلم</button><p id="teacherError" class="error"></p></section>
+  <section id="student-area" class="hidden">
+    <div class="welcome-row"><div><span class="eyebrow">مرحبًا</span><h2 id="studentWelcome"></h2><p id="studentClassLabel"></p></div><button class="outline" onclick="logoutStudent()">خروج</button></div>
+    <div class="stats"><div><b id="doneCount">0</b><span>قصص مكتملة</span></div><div><b id="scoreAvg">0%</b><span>متوسط الدرجات</span></div><div><b>30</b><span>قصة متاحة</span></div></div>
+    <h2 class="section-title">اختر قصتك 📚</h2><div id="storyGrid" class="story-grid"></div>
+  </section>
+  <section id="reader" class="panel hidden"><button class="back" onclick="backToStories()">← كل القصص</button><div class="reader-head"><span class="eyebrow" id="storyNumber"></span><h2 id="storyTitle"></h2></div><div id="storyText" class="story-text"></div><div id="quiz" class="quiz"></div><button id="submitQuiz" class="primary" onclick="submitQuiz()">إرسال الإجابات</button><div id="quizResult"></div></section>
+  <section id="teacher-area" class="hidden">
+    <div class="welcome-row"><div><span class="eyebrow">لوحة المتابعة</span><h2>أهلًا بك أيها المعلم 👩🏻‍🏫</h2><p>متابعة تقدم جميع الطلاب من مختلف الأجهزة</p></div><button class="outline" onclick="teacherLogout()">تسجيل الخروج</button></div>
+    <div class="stats"><div><b id="totalStudents">0</b><span>عدد الطلاب</span></div><div><b id="totalAttempts">0</b><span>محاولات مكتملة</span></div><div><b id="teacherAverage">0%</b><span>متوسط الأداء</span></div></div>
+    <div class="toolbar"><input id="searchStudent" placeholder="ابحث باسم الطالب أو الصف..." oninput="renderTeacherTable()"><button class="outline" onclick="loadTeacherData()">تحديث البيانات ↻</button></div>
+    <div class="table-wrap"><table><thead><tr><th>اسم الطالب</th><th>الصف</th><th>القصص المكتملة</th><th>متوسط الدرجة</th><th>آخر نشاط</th><th>التفاصيل</th></tr></thead><tbody id="teacherRows"><tr><td colspan="6">جارٍ تحميل البيانات...</td></tr></tbody></table></div>
+    <div id="studentDetails" class="panel hidden"></div>
+  </section>
+</main>
+<footer>Yasmin Reading · نقرأ اليوم لنبدع غدًا 🌱</footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script><script src="stories.js"></script><script src="app.js"></script>
+</body></html>
